@@ -98,6 +98,23 @@ def list_all_notes() -> str:
     return "\n".join(file.name for file in files)
 
 
+@mcp.prompt()
+def summarize_note(title: str, note_text: str) -> str:
+    """Create a prompt for summarizing a saved note."""
+    return f"""
+Summarize the following note titled "{title}".
+
+Please provide:
+1. A short summary
+2. Key points
+3. Action items, if any
+4. Important names, topics, or decisions mentioned
+
+Keep the response clear and concise.
+
+Note content:
+{note_text}
+""".strip()
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
